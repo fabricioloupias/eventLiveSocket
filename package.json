@@ -8,6 +8,7 @@
         "socket.io": "^2.2.0"
     },
     "scripts": {
+        "build": "npm start",
         "start": "node index.js"
     }
 }
