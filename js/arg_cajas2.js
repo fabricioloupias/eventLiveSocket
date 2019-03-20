@@ -35,7 +35,7 @@ $(function () {
                         top: '76vh',
                         percent: 100
                     }, {
-                        duration: 1650,
+                        duration: 650,
                         progress: function (a, p, n) {
                             // console.log(p)
                             document.getElementById(`caja-${i}`)

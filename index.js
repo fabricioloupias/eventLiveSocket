@@ -12,7 +12,7 @@ var count = 0;
 var $ipsConnected = [];
 
 
-var total_cajas = 5
+var total_cajas = 80
 var e_status = false
 var init = 0
 
@@ -61,7 +61,7 @@ io.on('connection', function (socket) {
         io.emit('chat message', msg);
     });
 
-    var j = schedule.scheduleJob('*/30 * * * * *', function () {
+    var j = schedule.scheduleJob('*/5 * * * *', function () {
         socket.emit('cajas', {
             total_cajas: total_cajas,
             event_status: true,
