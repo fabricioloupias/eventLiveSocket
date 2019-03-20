@@ -25,6 +25,7 @@ var if_win = false
 const port = process.env.PORT || 3000
 app.get('/', function (req, res) {
     res.sendFile(__dirname + '/public/')
+    res.send(JSON.stringify({ Hello: "World"}));
 });
 app.use(express.static('public'));
 
