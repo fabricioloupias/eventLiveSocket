@@ -4,6 +4,7 @@ var http = require('http').Server(app);
 var io = require('socket.io')(http);
 var schedule = require('node-schedule');
 var date = new Date(2019, 2, 18, 16, 55,25);
+const path = require("path");
 
 var count_users = 0
 var count = 0;
@@ -24,7 +25,7 @@ var if_win = false
 
 const port = process.env.PORT || 3000
 app.get('/', function (req, res) {
-    res.sendFile(__dirname + '/public/')
+    res.sendFile(path.join(__dirname + '/public/index.html'))
     // res.send(JSON.stringify({ Hello: "World"}));
 });
 app.use(express.static(__dirname + '/public/'));
