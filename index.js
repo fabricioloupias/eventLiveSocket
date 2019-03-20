@@ -43,7 +43,7 @@ io.on('connection', function (socket) {
         }
 
     }, 1000)
-    console.log('caja win: ' + num_caja_win)
+    // console.log('caja win: ' + num_caja_win)
     count_users++
     socket.emit('new user', {
         mensaje: 'Nuevo usuario conectado',
@@ -112,6 +112,11 @@ io.on('connection', function (socket) {
 
 //     });
 // });
+if(process.env.NODE_ENV === 'production'){
+    console.log('prod')
+}else{
+    console.log('desarrollo')
+}
 
 http.listen(port, function () {
     console.log('funciona, ', port);
