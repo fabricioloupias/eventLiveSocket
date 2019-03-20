@@ -25,10 +25,10 @@ var if_win = false
 
 const port = process.env.PORT || 3000
 app.get('/', function (req, res) {
-    res.sendFile(path.join(__dirname + '/public/index.html'))
+    res.sendFile(path.join(__dirname + '/index.html'))
     // res.send(JSON.stringify({ Hello: "World"}));
 });
-app.use(express.static(__dirname + '/public/'));
+// app.use(express.static(__dirname + '/public/'));
 
 
 io.on('connection', function (socket) {
