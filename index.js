@@ -61,7 +61,7 @@ io.on('connection', function (socket) {
         io.emit('chat message', msg);
     });
 
-    var j = schedule.scheduleJob('*/5 * * * *', function () {
+    var j = schedule.scheduleJob('*/2 * * * *', function () {
         socket.emit('cajas', {
             total_cajas: total_cajas,
             event_status: true,
