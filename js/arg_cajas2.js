@@ -35,7 +35,7 @@ $(function () {
                         top: '76vh',
                         percent: 100
                     }, {
-                        duration: 650,
+                        duration: 3650,
                         progress: function (a, p, n) {
                             // console.log(p)
                             document.getElementById(`caja-${i}`)
@@ -79,7 +79,7 @@ $(function () {
                 });
             }
             socket.on('click_stop', function (data) {
-                // console.log(data.target)
+                console.log(data)
                 if (data.stop) {
                     $(`#inner-${data.num_caja}`).stop()
                     $(`#caja-${data.num_caja}`)

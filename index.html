@@ -5,10 +5,10 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <base href="https://event-01.herokuapp.com/">
+    <!-- <base href="https://event-01.herokuapp.com/"> -->
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-        crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
     <title>Hello, world!</title>
 
@@ -23,61 +23,33 @@
 </style>
 
 <body>
-    <div class="container">
-        <h1>Seguro no ganas nada</h1>
-    </div>
-    <!-- <div class="container mt-5">
-        <div id="alert" class="alert alert-success" role="alert" style="display: none">
-
+    <div class="container mt-5">
+        <div class="card shadow">
+            <div class="card-body">
+                <form id="form">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Ingresa tu nombre</label>
+                        <input id="n" type="text" class="form-control" id="exampleInputEmail1"
+                            aria-describedby="emailHelp" placeholder="Nombre">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Ingresar</button>
+                </form>
+            </div>
         </div>
     </div>
-    <div class="container mt-5">
-        <ul id="messages"></ul>
-
-
-        <form id="form" class="mt-5">
-            <div class="form-group">
-                <label for="exampleFormControlTextarea1">Escribir mensaje</label>
-                <textarea id="m" autocomplete="off" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-            </div>
-
-            <button type="submit" class="btn btn-primary">Enviar</button>
-        </form>
-    </div> -->
 
     <div class="container text-center">
         <div id="slidebottom" class="slide">
-            <!-- <div class="inner"><img src="https://via.placeholder.com/150" alt="" class="try" /></div> -->
-            <!-- <script>
-                var init = 0
 
-                function num_random(a, b) {
-                    return Math.round(Math.random() * (b - a) + parseInt(a));
-                }
-                var caja_win = `caja-${num_random(init, total_cajas)}`
-
-
-                var win = false;
-                for (var i = 0; i < total_cajas; i++) {
-                    var min = 1;
-                    var max = 950;
-                    var random = Math.random() * (+max - +min) + +min;
-                    // console.log(random)
-                    document.write(
-                        `<div id="inner-${i}" style="position: absolute;"><img id="caja-${i}" src="caja.png" style="position:relative; left:${random}px; display: none"  alt="" class="try" /></div>`
-                    )
-                }
-            </script> -->
             <script>
                 function addImgs(total_cajas) {
-
                     for (var i = 0; i < total_cajas; i++) {
                         var min = 1;
                         var max = 950;
                         var random = Math.random() * (+max - +min) + +min;
                         console.log(random)
                         document.write(
-                            `<div id="inner-${i}" style="position: absolute;"><img id="caja-${i}" src="caja.png" style="position:relative; left:${random}px; display: none"  alt="" class="try" /></div>`
+                            `<div id="inner-${i}" style="position: absolute;"><img id="caja-${i}" src="caja.png" style="position:relative; left:${random}px; display: none"  alt="" class="try" data-toggle="tooltip" data-placement="top" title="Tooltip on top"/></div>`
                         )
                     }
                 }
@@ -91,270 +63,37 @@
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-        crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+    </script>
     <script src="./socket.io/socket.io.js"></script>
     <script src="arg_cajas2.js"></script>
     <script>
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
+    </script>
+    <script>
         var socket = io()
     </script>
-
-
-    <!-- <script>
-        var id_alerta = document.getElementById('alert')
+    <script>
         $(function () {
-
             var socket = io();
-            // socket.on('new user', function (data) {
-            //     console.log(data);
-            //     id_alerta.style.display = 'block'
-            //     id_alerta.innerHTML = `${data.mensaje}`
-            //     socket.on('desconectado', function (m) {
-            //         console.log(m.mensaje)
-            //         id_alerta.innerHTML = `${m.mensaje}`
-            //     })
-            // });
-            socket.on('total_users', function (data) {
-                console.log(data)
-            })
-            socket.on('cajas', function (data) {
-                dia = data.dia
-                var v_progress;
-                var cajas_iguales = false
-                var total_cajas = data.total_cajas
-
-                console.log(data)
-                addImgs(total_cajas)
-                var win = false;
-                if (data.event_status) {
-                    for (let i = 0; i < total_cajas; i++) {
-                        var time = 1500 * (i + 1)
-                        setTimeout(function () {
-                            var options = {
-                                duration: 5800,
-                                easing: 'easeInOut'
-                            };
-                            $(`#inner-${i}`).animate({
-                                top: '76vh',
-                                percent: 100
-                            }, {
-                                duration: 2650,
-                                progress: function (a, p, n) {
-                                    // console.log(p)
-                                    document.getElementById(`caja-${i}`)
-                                        .style.display = "block"
-                                    v_progress = Math.round(p * 100)
-                                },
-                                complete: function () {
-                                    document.getElementById(`caja-${i}`)
-                                        .style.display = "none"
-                                }
-                            }, );
-                        }, time);
-                    }
-
-                    //Cajas
-
-                    var timesClicked = false;
-                    var count_cajas = 0;
-                    total_cajas = data.total_cajas
-                    var change_src;
-                    for (let i = 0; i < total_cajas; i++) {
-                        $(`#inner-${i}`).bind("click", function (e) {
-                            var id_caja_win = e.target.id
-                            if (id_caja_win == data.caja_win) {
-                                socket.emit('caja_ganadora', {
-                                    caja_ganadora: `caja-${i}`
-                                })
-                            }
-
-                            count_cajas++
-                            
-                            timesClicked = true;
-                            var element = e.currentTarget
-                            var progress
-                            socket.emit('stop_animation',{
-                                click: true,
-                                num_caja: i
-                            })
-                            socket.on('click_stop', function(data){
-                                console.log(data)
-                                if(data.stop){
-                                    $(`#inner-${i}`).stop()
-                                }
-                            })
-                            
-                            $(`#caja-${i}`)
-                                .animate({
-                                    width: '130px'
-                                }, {
-                                    duration: 1200,
-                                    progress: function (a, p, n) {
-                                        // console.log(p)
-                                        progress = Math.round(p * 100)
-
-                                    }
-                                }, {
-                                    easing: 'easeIn'
-                                })
-                                .animate({
-                                    width: '100%'
-                                }, {
-                                    duration: 25,
-                                    complete: function () {
-                                        if (id_caja_win == data.caja_win) {
-                                            change_src = document.getElementById(
-                                                    `caja-${i}`).src =
-                                                'ganaste.png'
-
-                                        } else {
-                                            change_src = document.getElementById(
-                                                    `caja-${i}`).src =
-                                                'clic.png'
-                                        }
-
-                                    }
-                                }, {
-                                    easing: 'easeOut'
-                                })
-                            setTimeout(function () {
-                                shake(element);
-                            }, 500);
-                            if (timesClicked) {
-                                $(this).unbind(e);
-                            }
-                        });
-                    }
-                }
-
-            })
-            // $('form').submit(function (e) {
-            //     e.preventDefault();
-            //     socket.emit('chat message', $('#m').val());
-            //     $('#m').val('');
-            //     return false;
-            // });
-
-            // socket.on('chat message', function (msg) {
-            //     $('#messages').append($('<li>').text(msg));
-            // });
-
-
-            var shakingElements = [];
-
-            var shake = function (element, magnitude = 4, angular = false) {
-                //First set the initial tilt angle to the right (+1) 
-                var tiltAngle = 1;
-
-                //A counter to count the number of shakes
-                var counter = 1;
-
-                //The total number of shakes (there will be 1 shake per frame)
-                var numberOfShakes = 40;
-
-                //Capture the element's position and angle so you can
-                //restore them after the shaking has finished
-                var startX = 0,
-                    startY = 0,
-                    startAngle = 0;
-
-                // Divide the magnitude into 10 units so that you can 
-                // reduce the amount of shake by 10 percent each frame
-                var magnitudeUnit = magnitude / numberOfShakes;
-                //The `randomInt` helper function
-                var randomInt = (min, max) => {
-                    return Math.floor(Math.random() * (max - min + 1)) + min;
-                };
-
-                //Add the element to the `shakingElements` array if it
-                //isn't already there
-                if (shakingElements.indexOf(element) === -1) {
-                    //console.log("added")
-                    shakingElements.push(element);
-
-                    //Add an `updateShake` method to the element.
-                    //The `updateShake` method will be called each frame
-                    //in the game loop. The shake effect type can be either
-                    //up and down (x/y shaking) or angular (rotational shaking).
-                    if (angular) {
-                        angularShake();
-                    } else {
-                        upAndDownShake();
-                    }
-                }
-
-                //The `upAndDownShake` function
-                function upAndDownShake() {
-
-                    //Shake the element while the `counter` is less than 
-                    //the `numberOfShakes`
-                    if (counter < numberOfShakes) {
-
-                        //Reset the element's position at the start of each shake
-                        element.style.transform = 'translate(' + startX + 'px, ' + startY + 'px)';
-
-                        //Reduce the magnitude
-                        magnitude -= magnitudeUnit;
-
-                        //Randomly change the element's position
-                        var randomX = randomInt(-magnitude, magnitude);
-                        var randomY = randomInt(-magnitude, magnitude);
-
-                        element.style.transform = 'translate(' + randomX + 'px, ' + randomY + 'px)';
-
-                        //Add 1 to the counter
-                        counter += 1;
-
-                        requestAnimationFrame(upAndDownShake);
-                    }
-
-                    //When the shaking is finished, restore the element to its original 
-                    //position and remove it from the `shakingElements` array
-                    if (counter >= numberOfShakes) {
-                        element.style.transform = 'translate(' + startX + ', ' + startY + ')';
-                        shakingElements.splice(shakingElements.indexOf(element), 1);
-                    }
-                }
-
-                //The `angularShake` function
-                function angularShake() {
-                    if (counter < numberOfShakes) {
-                        console.log(tiltAngle);
-                        //Reset the element's rotation
-                        element.style.transform = 'rotate(' + startAngle + 'deg)';
-
-                        //Reduce the magnitude
-                        magnitude -= magnitudeUnit;
-
-                        //Rotate the element left or right, depending on the direction,
-                        //by an amount in radians that matches the magnitude
-                        var angle = Number(magnitude * tiltAngle).toFixed(2);
-                        console.log(angle);
-                        element.style.transform = 'rotate(' + angle + 'deg)';
-                        counter += 1;
-
-                        //Reverse the tilt angle so that the element is tilted
-                        //in the opposite direction for the next shake
-                        tiltAngle *= -1;
-
-                        requestAnimationFrame(angularShake);
-                    }
-
-                    //When the shaking is finished, reset the element's angle and
-                    //remove it from the `shakingElements` array
-                    if (counter >= numberOfShakes) {
-                        element.style.transform = 'rotate(' + startAngle + 'deg)';
-                        shakingElements.splice(shakingElements.indexOf(element), 1);
-                        //console.log("removed")
-                    }
-                }
-
-            };
-
+            $('form').submit(function (e) {
+                e.preventDefault(); // prevents page reloading
+                socket.emit('name_user', $('#n').val());
+                var nombre = $('#n').val();
+                console.log(nombre)
+                localStorage.setItem('nombre', nombre)
+                $('#n').val('');
+                return false;
+            });
         });
-    </script> -->
+    </script>
+
 </body>
 
 </html>
